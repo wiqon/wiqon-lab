@@ -159,7 +159,9 @@ resultados/            CSV de las corridas citadas arriba
 ¿Tenés una estrategia o un bot y querés saber si realmente funciona antes
 de arriesgar plata? WIQON ofrece **auditorías de estrategias** con esta
 metodología y **bots a medida para Binance** (órdenes OCO, Earn, alertas
-por Telegram, kill switch). Contacto a través del perfil de GitHub.
+por Telegram, kill switch).
+
+📩 **Contacto:** wiqon027@gmail.com
 
 **Principio WIQON:** crecer por evidencia, no por exageración. Se publican
 los resultados favorables y los desfavorables.
