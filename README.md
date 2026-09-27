@@ -1,3 +1,5 @@
+<p align="center"><img src="assets/banner.png" alt="WIQON — Market Flow Intelligence" width="100%"></p>
+
 # WIQON Lab
 
 **Market Flow Intelligence · Documentar, no prometer.**
