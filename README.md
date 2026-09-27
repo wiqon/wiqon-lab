@@ -165,7 +165,7 @@ por Telegram, kill switch).
 
 ### Seguinos
 
-[Instagram](https://www.instagram.com/wiqonlab/) · [X](https://x.com/wiqonlab) · [TikTok](https://www.tiktok.com/@wiqonlab) · [Threads](https://www.threads.net/@wiqonlab) · [GitHub](https://github.com/wiqon)
+[YouTube](https://www.youtube.com/@wiqonlab) · [Instagram](https://www.instagram.com/wiqonlab/) · [X](https://x.com/wiqonlab) · [TikTok](https://www.tiktok.com/@wiqonlab) · [Threads](https://www.threads.net/@wiqonlab) · [GitHub](https://github.com/wiqon)
 
 **Principio WIQON:** crecer por evidencia, no por exageración. Se publican
 los resultados favorables y los desfavorables.
