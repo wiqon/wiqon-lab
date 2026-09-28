@@ -165,7 +165,7 @@ por Telegram, kill switch).
 
 ### Seguinos
 
-[YouTube](https://www.youtube.com/@wiqonlab) · [Instagram](https://www.instagram.com/wiqonlab/) · [Facebook](https://www.facebook.com/wiqonlab/) · [X](https://x.com/wiqonlab) · [TikTok](https://www.tiktok.com/@wiqonlab) · [Threads](https://www.threads.net/@wiqonlab) · [LinkedIn](https://www.linkedin.com/company/wiqonlab) · [Telegram](https://t.me/wiqonlab) · [Discord](https://discord.gg/8GDqe8H7R7) · [GitHub](https://github.com/wiqon)
+🌐 **[wiqon.github.io](https://wiqon.github.io)** · [YouTube](https://www.youtube.com/@wiqonlab) · [Instagram](https://www.instagram.com/wiqonlab/) · [Facebook](https://www.facebook.com/wiqonlab/) · [X](https://x.com/wiqonlab) · [TikTok](https://www.tiktok.com/@wiqonlab) · [Threads](https://www.threads.net/@wiqonlab) · [LinkedIn](https://www.linkedin.com/company/wiqonlab) · [Telegram](https://t.me/wiqonlab) · [Discord](https://discord.gg/8GDqe8H7R7) · [GitHub](https://github.com/wiqon)
 
 **Principio WIQON:** crecer por evidencia, no por exageración. Se publican
 los resultados favorables y los desfavorables.
