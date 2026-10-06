@@ -73,6 +73,9 @@ siguiente, con comisiones y slippage. 8 años (2018-2026, incluye el crash de
   que mantener (2024-25: +55% vs +93%).
 - Agregar ETH o ajustar el tamaño por volatilidad **no mejoró** de forma
   consistente (`lab/tendencia_multi.py`, 36 variantes).
+- **En MetaTrader 5 (CFD con swaps reales, Exness demo, 2022-2026):** x2,02
+  contra x1,96 de mantener, con caída de 39% contra 67%. Los swaps se llevan
+  cerca de un tercio de la ventaja del spot. Informe: [`resultados/mt5/`](resultados/mt5/).
 
 ### 4. Arbitraje: medido, no supuesto
 
