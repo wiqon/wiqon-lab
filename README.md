@@ -34,7 +34,7 @@ Re-evaluada con un backtest de portafolio a 3 años (2023-2026, 178 operaciones)
 |---|---|
 | Retorno total en 3 años | **+0.71%** |
 | Resultado medio por operación | +0.02%, IC 95% [−0.25%, +0.30%] → **no se distingue de 0** |
-| Ventanas de 6 meses positivas | 1 de 6 |
+| Ventanas de 6 meses por encima de Earn (+1.47%) | 1 de 6 (positivas: 2 de 6, una con +0.13%) |
 | USDT en Earn al 3% (mismo período) | +9.3% |
 
 **Lección:** con 28 operaciones y ~20 variantes probadas sobre los mismos
