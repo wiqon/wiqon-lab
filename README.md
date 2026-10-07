@@ -164,7 +164,7 @@ de arriesgar plata? WIQON ofrece **auditorías de estrategias** con esta
 metodología y **bots a medida para Binance** (órdenes OCO, Earn, alertas
 por Telegram, kill switch).
 
-📩 **Contacto:** wiqon027@gmail.com
+📩 **Contacto:** contacto@wiqonlab.com
 
 ### Seguinos
 
