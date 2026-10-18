@@ -18,7 +18,8 @@ resultados, incluidos los que salieron mal.
 > simulation, out-of-sample windows, bootstrap confidence intervals,
 > survivorship-bias control, and read-only arbitrage monitors. Of 20+
 > strategies tested on Binance data, only a simple BTC trend filter
-> survived. Code and results in Spanish.
+> survived. Spot grid bots (64 settings, 2018-2026) never beat buy and hold,
+> and the "grid profit" dashboards show hides the real result. Code and results in Spanish.
 
 ---
 
@@ -93,6 +94,40 @@ Spot largo + perpetuo corto, 6 años de funding real de Binance: 7-10% anual
 promedio, pero casi todo de 2021 (30-48%). En 2025-26 ≈ 2-3% sobre el capital,
 igual o menos que Earn.
 
+### 6. Grid bots: la "ganancia del grid" no es tu ganancia
+
+Grid de spot geométrico en BTC/USDT, como los de Binance, Pionex o Bitsgap:
+compra al bajar a cada nivel y vende al subir al siguiente. Velas de 5
+minutos de enero de 2018 a septiembre de 2026, comisión de 0,1% por orden,
+64 combinaciones: rango ±5/10/20/30%, 10/20/50/100 niveles, y reinicio cada
+7, 30 o 90 días o al salir del rango (`lab/grid_bot.py`):
+
+| | Anualizado | Caída máxima |
+|---|---|---|
+| Grid, mediana de 64 combinaciones | −9.0% | −78.6% |
+| Mejor grid (±30%, 10 niveles, reinicio semanal) | +12.4% | −48.3% |
+| Comprar y mantener BTC (misma ventana) | +23.3% | −81.2% |
+| Regla de tendencia (misma ventana, USDT sin rendimiento) | +42.7% | −38.5% |
+
+- **0 de 64** combinaciones superaron a comprar y mantener; 17 terminaron en positivo.
+- **La "ganancia del grid" que muestran los paneles no es el resultado:** en
+  la mediana, las vueltas cerradas sumaron +237% mientras la cuenta terminó
+  en −56%. Las vueltas ganan de a poco; el BTC comprado en las bajas pierde
+  de golpe, y eso el panel no lo resta.
+- **Rangos angostos con muchos niveles son lo peor:** con ±5% y 100 niveles
+  la distancia entre niveles (0,1%) es menor que las dos comisiones de cada
+  vuelta (0,2%): cada vuelta pierde plata.
+- **Depende del mercado, no de la configuración:** el grid típico (±10%, 20
+  niveles, reinicio mensual) ganó en años laterales (2019 +21%, 2023 +22%,
+  2024 +36%), perdió fuerte en los bajistas (2018 −64%, 2022 −47%) y en el
+  alcista de 2020 hizo −6% contra +302% de mantener. Mediana de las 64:
+  −21.9% anual en 2018-2022 y +9.8% en 2023-2026.
+- La ventana arranca en enero de 2018, cerca de un máximo, y el USDT no rinde:
+  por eso mantener y la regla dan distinto que en la sección 3.
+
+Detalle por combinación y por año: `resultados/grid_bot.csv`,
+`resultados/grid_bot_anual.csv`, `resultados/grid_bot_resumen.csv`.
+
 ---
 
 ## Metodología (lo que la mayoría de los backtests no hace)
@@ -129,6 +164,9 @@ python -m lab.momentum_diario --symbols BTC/USDT --top 1 --grilla-top 1 --days 3
 # Variantes multi-activo y tamaño por volatilidad
 python -m lab.tendencia_multi
 
+# Grid bot de spot (64 combinaciones, velas de 5 minutos del archivo público de Binance)
+python -m lab.grid_bot
+
 # Arbitraje de funding
 python -m lab.funding_carry
 
@@ -149,6 +187,7 @@ lab/
   momentum_diario.py   rotación de momentum / filtro de tendencia + robustez
   tendencia_multi.py   multi-activo y tamaño por volatilidad
   funding_carry.py     arbitraje de funding con historial real
+  grid_bot.py          grid bot de spot (velas de 5 min) y "ganancia del grid" vs resultado real
   arbitraje/
     monitor.py                 triangular y entre exchanges
     monitor_transferencia.py   con transferencia, libro de órdenes y estado de retiros
