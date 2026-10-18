@@ -78,7 +78,7 @@ def simular_grid(df: pd.DataFrame, amplitud: float, n: int, reinicio: str, capit
     t = df.index.to_numpy()
     dias_reinicio = {"7d": 7, "30d": 30, "90d": 90}.get(reinicio)
     usdt, comisiones, ganancia_grid, vueltas, reinicios = capital, 0.0, 0.0, 0, 0
-    eq_t, eq_v = [], []
+    eq_t, eq_v, eq_g = [], [], []   # fecha, valor de la cuenta y ganancia del grid acumulada (lo que muestra el panel)
     niveles = None
 
     def armar(precio, efectivo):
@@ -152,11 +152,12 @@ def simular_grid(df: pd.DataFrame, amplitud: float, n: int, reinicio: str, capit
         dia = t[i].astype("datetime64[D]")
         if dia != dia_actual:
             if dia_actual is not None:
-                eq_t.append(dia_actual); eq_v.append(valor)
+                eq_t.append(dia_actual); eq_v.append(valor); eq_g.append(ganancia_grid)
             dia_actual = dia
         valor = sum(caja) + sum(btc) * c[i]
-    eq_t.append(dia_actual); eq_v.append(valor)
+    eq_t.append(dia_actual); eq_v.append(valor); eq_g.append(ganancia_grid)
     equity = pd.Series(eq_v, index=pd.to_datetime(eq_t))
+    simular_grid.ultima_ganancia_diaria = pd.Series(eq_g, index=pd.to_datetime(eq_t))
     return equity, {"ganancia_grid_usdt": ganancia_grid, "vueltas": vueltas, "comisiones_usdt": comisiones, "reinicios": reinicios}
 
 

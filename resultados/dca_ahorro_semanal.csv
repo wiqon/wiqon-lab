@@ -1,0 +1,4 @@
+,aportado,valor_final,multiplo,peor_valor_sobre_aportado_pct,fecha_peor,max_caida_pct
+Comprar todas las semanas,45700.0,235795.0,5.16,44.8,2018-12-15,-74.6
+Comprar solo sobre la media de 100 días,45700.0,236906.0,5.18,53.3,2018-12-15,-74.5
+Regla completa (también vende debajo de la media),45700.0,366764.0,8.03,81.8,2018-09-06,-43.8

@@ -128,6 +128,65 @@ minutos de enero de 2018 a septiembre de 2026, comisión de 0,1% por orden,
 Detalle por combinación y por año: `resultados/grid_bot.csv`,
 `resultados/grid_bot_anual.csv`, `resultados/grid_bot_resumen.csv`.
 
+### 7. DCA: el de ahorro y el "DCA bot" no son lo mismo
+
+Misma ventana (enero 2018 a septiembre 2026), comisión de 0,1% y USDT sin
+rendimiento (`lab/dca.py`).
+
+**DCA de ahorro.** US$ 10.000 de una vez contra 12 compras mensuales, para
+cada uno de los 93 meses de inicio posibles:
+
+| | Gana "de una vez" | Peor resultado de una vez | Peor resultado en 12 compras |
+|---|---|---|---|
+| Al terminar las compras (mes 12) | 61% de los inicios | US$ 2.835 | US$ 4.503 |
+| A los 36 meses (69 inicios) | 56% de los inicios | US$ 10.088 | US$ 9.420 |
+
+- Como BTC subió en el período, invertir todo de una vez gana más seguido
+  (en la mediana, 13% más al mes 12). Repartir no mejora el promedio: achica
+  el peor caso de entrar justo en un máximo: empezando en diciembre de 2021,
+  al mes 12 quedaban US$ 2.966 de una vez contra US$ 5.838 repartido.
+
+US$ 100 por semana durante todo el período (US$ 45.700 aportados):
+
+| | Valor final | Múltiplo | Peor momento (valor / aportado) | Caída máxima |
+|---|---|---|---|---|
+| Comprar todas las semanas | US$ 235.795 | x5,16 | 45% | −74.6% |
+| Comprar solo sobre la media de 100 días | US$ 236.906 | x5,18 | 53% | −74.5% |
+| **Regla completa (también vende debajo de la media)** | **US$ 366.764** | **x8,03** | **82%** | **−43.8%** |
+
+- Elegir cuándo comprar casi no cambia nada; lo que cambia el resultado es
+  salir en los bajistas, igual que en la sección 3.
+
+**DCA bot** (3Commas, Cryptohopper, Pionex): orden base, órdenes de seguridad
+cada 1/2/4% más abajo (4 u 8, de igual tamaño o creciendo x1,5), toma de
+ganancia de 1/2/3% sobre el precio promedio, sin stop loss, velas de 5
+minutos. 36 combinaciones:
+
+| | Anualizado | Caída máxima |
+|---|---|---|
+| DCA bot, mediana de 36 combinaciones | +19.3% | −79.5% |
+| Mejor (tp 3%, 8 órdenes cada 2%, x1,5) | +29.8% | −73.6% |
+| Típico (tp 2%, 8 órdenes cada 2%, x1,5) | +23.4% | −69.4% |
+| Comprar y mantener BTC | +23.3% | −81.2% |
+| Regla de tendencia (USDT sin rendimiento) | +42.7% | −38.5% |
+
+- Las 36 terminaron en positivo y 4 superaron a mantener, pero con caídas
+  del mismo tamaño: **un DCA bot sin stop loss es BTC comprado con más
+  pasos.** En los bajistas se queda sin órdenes y atrapado: el deal más
+  largo duró en la mediana 1.030 días (2,8 años), y el 81% del tiempo el bot
+  no tenía más órdenes para poner.
+- El típico hizo exactamente lo mismo que mantener en 2022 (−64%) y 2023
+  (+156%): esos dos años estuvo atrapado con todo comprado.
+- **El panel nunca muestra pérdida:** suma solo los deals cerrados, que por
+  construcción siempre ganan. En noviembre de 2022 la cuenta del bot típico
+  valía el 31% de lo que mostraba el panel. Al final coinciden porque el
+  último deal cerró: la diferencia está en el camino, no en la foto final.
+- Mediana de las 36: −3.6% anual en 2018-2022 y +58.3% en 2023-2026.
+
+Detalle: `resultados/dca_una_vez_vs_12_compras.csv`,
+`resultados/dca_ahorro_semanal.csv`, `resultados/dca_bot.csv`,
+`resultados/dca_bot_anual.csv`, `resultados/dca_bot_resumen.csv`.
+
 ---
 
 ## Metodología (lo que la mayoría de los backtests no hace)
@@ -167,6 +226,9 @@ python -m lab.tendencia_multi
 # Grid bot de spot (64 combinaciones, velas de 5 minutos del archivo público de Binance)
 python -m lab.grid_bot
 
+# DCA de ahorro y DCA bot (36 combinaciones, mismas velas de 5 minutos)
+python -m lab.dca
+
 # Arbitraje de funding
 python -m lab.funding_carry
 
@@ -188,6 +250,7 @@ lab/
   tendencia_multi.py   multi-activo y tamaño por volatilidad
   funding_carry.py     arbitraje de funding con historial real
   grid_bot.py          grid bot de spot (velas de 5 min) y "ganancia del grid" vs resultado real
+  dca.py               DCA de ahorro (de una vez vs repartido, semanal con tendencia) y DCA bot vs panel
   arbitraje/
     monitor.py                 triangular y entre exchanges
     monitor_transferencia.py   con transferencia, libro de órdenes y estado de retiros
