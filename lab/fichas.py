@@ -80,9 +80,9 @@ EXPERIMENTOS = {
              "en": "MetaTrader 5, CFD with real swaps (Exness demo, 2022-2026): x2.02 vs x1.96 for holding, 39% drawdown vs 67%. Swaps take about a third of the edge.", "archivo": "resultados/mt5/"},
         ],
         "advertencias": [
-            {"es": "Rinde menos que mantener en los alcistas (2024-25: +55 % contra +93 %): su ventaja es proteger en los bajistas.",
-             "pt": "Rende menos que manter nas altas (2024-25: +55 % contra +93 %): a vantagem é proteger nas baixas.",
-             "en": "It lags holding in bull markets (2024-25: +55% vs +93%): its edge is protection in bear markets."},
+            {"es": "Rinde menos que mantener en los años muy alcistas (2020, 2023 y 2024 en el comparador): su ventaja es proteger en los bajistas.",
+             "pt": "Rende menos que manter nos anos muito altistas (2020, 2023 e 2024 no comparador): a vantagem é proteger nas baixas.",
+             "en": "It lags holding in strong bull years (2020, 2023 and 2024 in the comparison): its edge is protection in bear markets."},
             {"es": "Pocas operaciones por año: las cifras tienen más incertidumbre de la que sugieren los decimales.",
              "pt": "Poucas operações por ano: os números têm mais incerteza do que sugerem as casas decimais.",
              "en": "Few trades a year: the figures carry more uncertainty than their decimals suggest."},
