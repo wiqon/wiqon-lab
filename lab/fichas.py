@@ -36,7 +36,7 @@ def huella_datos() -> dict:
 def version_codigo() -> dict:
     def git(*a):
         return subprocess.run(["git", *a], capture_output=True, text=True).stdout.strip()
-    return {"commit": git("rev-parse", "--short", "HEAD"), "cambios_sin_commit": bool(git("status", "--porcelain", "lab")),
+    return {"commit": git("rev-parse", "--short", "HEAD"), "cambios_sin_commit": bool(git("status", "--porcelain", "--untracked-files=no", "lab")),
             "repositorio": "https://github.com/wiqon/wiqon-lab"}
 
 
