@@ -54,9 +54,9 @@
  ],
  "advertencias": [
   {
-   "es": "Rinde menos que mantener en los alcistas (2024-25: +55 % contra +93 %): su ventaja es proteger en los bajistas.",
-   "pt": "Rende menos que manter nas altas (2024-25: +55 % contra +93 %): a vantagem é proteger nas baixas.",
-   "en": "It lags holding in bull markets (2024-25: +55% vs +93%): its edge is protection in bear markets."
+   "es": "Rinde menos que mantener en los años muy alcistas (2020, 2023 y 2024 en el comparador): su ventaja es proteger en los bajistas.",
+   "pt": "Rende menos que manter nos anos muito altistas (2020, 2023 e 2024 no comparador): a vantagem é proteger nas baixas.",
+   "en": "It lags holding in strong bull years (2020, 2023 and 2024 in the comparison): its edge is protection in bear markets."
   },
   {
    "es": "Pocas operaciones por año: las cifras tienen más incertidumbre de la que sugieren los decimales.",
@@ -79,9 +79,9 @@
   "demo": "hecho (MetaTrader 5, Exness)",
   "real": "en curso (bot en la Raspberry; sin historial suficiente para publicar)"
  },
- "generado": "2026-11-12",
+ "generado": "2026-11-13",
  "version": {
-  "commit": "1b0794a",
+  "commit": "3b483f0",
   "cambios_sin_commit": false,
   "repositorio": "https://github.com/wiqon/wiqon-lab"
  },

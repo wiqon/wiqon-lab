@@ -67,9 +67,9 @@
   "demo": "no",
   "real": "no"
  },
- "generado": "2026-11-12",
+ "generado": "2026-11-13",
  "version": {
-  "commit": "1b0794a",
+  "commit": "3b483f0",
   "cambios_sin_commit": false,
   "repositorio": "https://github.com/wiqon/wiqon-lab"
  },
