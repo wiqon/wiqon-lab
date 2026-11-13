@@ -1,0 +1,251 @@
+{
+ "id": "grid-bots",
+ "numero": 6,
+ "nombre": {
+  "es": "Grid bot de spot",
+  "pt": "Robô de grid em spot",
+  "en": "Spot grid bot"
+ },
+ "hipotesis": {
+  "es": "Un grid bot de spot gana con la volatilidad: compra en cada bajada y vende en cada subida dentro de un rango.",
+  "pt": "Um robô de grid em spot ganha com a volatilidade: compra a cada queda e vende a cada alta dentro de uma faixa.",
+  "en": "A spot grid bot profits from volatility: it buys every dip and sells every rise inside a range."
+ },
+ "reglas": {
+  "es": [
+   "Rango de ±10 % alrededor del precio, 20 niveles geométricos.",
+   "Compra al tocar un nivel por debajo; vende al siguiente nivel por encima.",
+   "El rango se reinicia una vez por mes."
+  ],
+  "pt": [
+   "Faixa de ±10 % em torno do preço, 20 níveis geométricos.",
+   "Compra ao tocar um nível abaixo; vende no nível seguinte acima.",
+   "A faixa é reiniciada uma vez por mês."
+  ],
+  "en": [
+   "±10% range around the price, 20 geometric levels.",
+   "Buys when a lower level is hit; sells at the next level up.",
+   "The range resets once a month."
+  ]
+ },
+ "temporalidad": "5m",
+ "validacion": [
+  {
+   "tipo": "sensibilidad",
+   "es": "64 combinaciones (rango ±5/10/20/30 %, 10/20/50/100 niveles, reinicio cada 7/30/90 días o al salir): ninguna superó a mantener; mediana −9 % anual.",
+   "pt": "64 combinações (faixa ±5/10/20/30 %, 10/20/50/100 níveis, reinício a cada 7/30/90 dias ou ao sair): nenhuma superou manter; mediana −9 % ao ano.",
+   "en": "64 combinations (±5/10/20/30% range, 10/20/50/100 levels, reset every 7/30/90 days or on exit): none beat holding; median −9% a year.",
+   "archivo": "resultados/grid_bot.csv"
+  },
+  {
+   "tipo": "fuera_de_muestra",
+   "es": "Mediana de las 64: −21,9 % anual en 2018-2022 y +9,8 % en 2023-2026.",
+   "pt": "Mediana das 64: −21,9 % ao ano em 2018-2022 e +9,8 % em 2023-2026.",
+   "en": "Median of the 64: −21.9% a year in 2018-2022 and +9.8% in 2023-2026.",
+   "archivo": "resultados/grid_bot_resumen.csv"
+  }
+ ],
+ "advertencias": [
+  {
+   "es": "La «ganancia del grid» del panel no es el resultado: suma las vueltas cerradas y no resta el BTC comprado en las bajas.",
+   "pt": "O «lucro do grid» do painel não é o resultado: soma as voltas fechadas e não desconta o BTC comprado nas quedas.",
+   "en": "The panel's «grid profit» is not the result: it adds closed round trips and ignores the BTC bought on the way down."
+  },
+  {
+   "es": "Con rangos angostos y muchos niveles la distancia entre niveles es menor que las dos comisiones de cada vuelta.",
+   "pt": "Com faixas estreitas e muitos níveis a distância entre níveis é menor que as duas comissões de cada volta.",
+   "en": "With narrow ranges and many levels the level spacing is smaller than the two fees each round trip pays."
+  },
+  {
+   "es": "La ventana empieza cerca de un máximo (enero de 2018).",
+   "pt": "A janela começa perto de um topo (janeiro de 2018).",
+   "en": "The window starts near a top (January 2018)."
+  }
+ ],
+ "clasificacion": {
+  "backtest": "hecho",
+  "demo": "no",
+  "real": "no"
+ },
+ "generado": "2026-11-12",
+ "version": {
+  "commit": "1b0794a",
+  "cambios_sin_commit": false,
+  "repositorio": "https://github.com/wiqon/wiqon-lab"
+ },
+ "datos": {
+  "fuente": "data.binance.vision — velas de 5 minutos BTCUSDT (spot), archivo público mensual",
+  "frecuencia_simulacion": "5 minutos (las métricas se miden sobre el cierre diario, UTC)",
+  "cobertura": "enero 2018 a septiembre 2026, sin huecos de meses",
+  "huella": {
+   "sha256": "2b35ec1d459ed86d01ee924f2bacbc9b02fe86bb576f7da6c5e8686892e0613f",
+   "archivos_mensuales": 105
+  }
+ },
+ "supuestos": {
+  "capital_inicial_usdt": 10000,
+  "comision_por_orden_pct": 0.1,
+  "spread_y_slippage": {
+   "es": "No se suma slippage aparte: el grid y el DCA bot usan órdenes límite; la regla de tendencia ejecuta a la apertura del día siguiente.",
+   "pt": "Não se soma slippage à parte: o grid e o robô DCA usam ordens limitadas; a regra de tendência executa na abertura do dia seguinte.",
+   "en": "No separate slippage is added: the grid and the DCA bot use limit orders; the trend rule executes at the next day's open."
+  },
+  "rendimiento_del_usdt": {
+   "es": "El USDT no rinde nada (sin Earn) en esta comparación.",
+   "pt": "O USDT não rende nada (sem Earn) nesta comparação.",
+   "en": "USDT earns nothing (no Earn) in this comparison."
+  },
+  "funding_y_swaps": {
+   "es": "No aplica: spot sin apalancamiento.",
+   "pt": "Não se aplica: spot sem alavancagem.",
+   "en": "Not applicable: unleveraged spot."
+  }
+ },
+ "benchmark": {
+  "id": "hold",
+  "es": "Comprar y mantener BTC, misma ventana y comisión",
+  "pt": "Comprar e manter BTC, mesma janela e comissão",
+  "en": "Buy and hold BTC, same window and fee"
+ },
+ "periodo": {
+  "desde": "2018-01-01",
+  "hasta": "2026-09-30",
+  "corte": "2023-01-01"
+ },
+ "metodologia_metricas": "lab/metricas.py",
+ "comparador": "lab/comparador.py",
+ "metricas": {
+  "completo": {
+   "desde": "2018-01-01",
+   "hasta": "2026-09-30",
+   "dias": 3194,
+   "retorno_total_pct": -72.85,
+   "cagr_pct": -13.84,
+   "volatilidad_pct": 43.51,
+   "max_drawdown_pct": -84.95,
+   "dias_en_dd_max": 3180,
+   "sharpe": -0.11,
+   "sortino": -0.15,
+   "calmar": -0.16,
+   "mejor_anio_pct": 36.04,
+   "peor_anio_pct": -63.91,
+   "anios_positivos": 4,
+   "anios_total": 9,
+   "operaciones": 8832,
+   "exposicion_pct": null
+  },
+  "2018-2022": {
+   "desde": "2018-01-01",
+   "hasta": "2022-12-31",
+   "dias": 1825,
+   "retorno_total_pct": -80.61,
+   "cagr_pct": -27.97,
+   "volatilidad_pct": 52.47,
+   "max_drawdown_pct": -84.95,
+   "dias_en_dd_max": 1811,
+   "sharpe": -0.35,
+   "sortino": -0.45,
+   "calmar": -0.33,
+   "mejor_anio_pct": 21.18,
+   "peor_anio_pct": -63.91,
+   "anios_positivos": 1,
+   "anios_total": 5,
+   "operaciones": null,
+   "exposicion_pct": null
+  },
+  "2023-2026": {
+   "desde": "2023-01-01",
+   "hasta": "2026-09-30",
+   "dias": 1368,
+   "retorno_total_pct": 39.61,
+   "cagr_pct": 9.31,
+   "volatilidad_pct": 27.33,
+   "max_drawdown_pct": -37.24,
+   "dias_en_dd_max": 359,
+   "sharpe": 0.46,
+   "sortino": 0.66,
+   "calmar": 0.25,
+   "mejor_anio_pct": 36.04,
+   "peor_anio_pct": -17.29,
+   "anios_positivos": 3,
+   "anios_total": 4,
+   "operaciones": null,
+   "exposicion_pct": null
+  }
+ },
+ "anios": {
+  "2018": -63.9,
+  "2019": 21.2,
+  "2020": -6.2,
+  "2021": -10.9,
+  "2022": -47.0,
+  "2023": 22.2,
+  "2024": 36.0,
+  "2025": 1.8,
+  "2026": -17.3
+ },
+ "unidad_operaciones": "vueltas cerradas (compra + venta)",
+ "benchmark_metricas": {
+  "completo": {
+   "desde": "2018-01-01",
+   "hasta": "2026-09-30",
+   "dias": 3194,
+   "retorno_total_pct": 524.99,
+   "cagr_pct": 23.3,
+   "volatilidad_pct": 64.24,
+   "max_drawdown_pct": -81.18,
+   "dias_en_dd_max": 1045,
+   "sharpe": 0.65,
+   "sortino": 0.94,
+   "calmar": 0.29,
+   "mejor_anio_pct": 301.98,
+   "peor_anio_pct": -72.33,
+   "anios_positivos": 5,
+   "anios_total": 9,
+   "operaciones": 1,
+   "exposicion_pct": 100.0
+  },
+  "2018-2022": {
+   "desde": "2018-01-01",
+   "hasta": "2022-12-31",
+   "dias": 1825,
+   "retorno_total_pct": 23.64,
+   "cagr_pct": 4.33,
+   "volatilidad_pct": 74.87,
+   "max_drawdown_pct": -81.18,
+   "dias_en_dd_max": 1045,
+   "sharpe": 0.44,
+   "sortino": 0.62,
+   "calmar": 0.05,
+   "mejor_anio_pct": 301.98,
+   "peor_anio_pct": -72.33,
+   "anios_positivos": 3,
+   "anios_total": 5,
+   "operaciones": null,
+   "exposicion_pct": 100.0
+  },
+  "2023-2026": {
+   "desde": "2023-01-01",
+   "hasta": "2026-09-30",
+   "dias": 1368,
+   "retorno_total_pct": 403.25,
+   "cagr_pct": 53.9,
+   "volatilidad_pct": 46.47,
+   "max_drawdown_pct": -52.97,
+   "dias_en_dd_max": 359,
+   "sharpe": 1.16,
+   "sortino": 1.81,
+   "calmar": 1.02,
+   "mejor_anio_pct": 154.46,
+   "peor_anio_pct": -6.33,
+   "anios_positivos": 2,
+   "anios_total": 4,
+   "operaciones": null,
+   "exposicion_pct": 100.0
+  }
+ },
+ "extra": {
+  "ganancia_mostrada_por_el_panel_pct": 211.4,
+  "comisiones_pct_del_capital": 43.9
+ }
+}

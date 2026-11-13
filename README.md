@@ -189,6 +189,42 @@ Detalle: `resultados/dca_una_vez_vs_12_compras.csv`,
 
 ---
 
+### 8. Comparador: todas en las mismas condiciones
+
+Mismo activo (BTC/USDT spot), misma ventana (enero 2018 a septiembre 2026),
+misma comisión (0,1 % por orden) y USDT sin rendimiento. Cada estrategia usa el
+simulador que generó sus números publicados y todas se miden con la misma
+definición de métricas, sobre la curva diaria (`lab/metricas.py`). Antes de
+escribir resultados, el comparador verifica que reproduce los números de las
+secciones 6 y 7 (`resultados/comparador_control.csv`).
+
+| | Anualizado | Caída máxima | Días en caída | Sharpe | Sortino | Peor año | Años positivos |
+|---|---|---|---|---|---|---|---|
+| Comprar y mantener | 23,3 % | −81,2 % | 1.045 | 0,65 | 0,94 | −72,3 % | 5 de 9 |
+| **Filtro de tendencia** | **42,7 %** | **−38,5 %** | **518** | **1,05** | **1,65** | **−27,7 %** | **7 de 9** |
+| Grid típico | −13,8 % | −85,0 % | 3.180 | −0,11 | −0,15 | −63,9 % | 4 de 9 |
+| DCA bot típico | 23,4 % | −69,4 % | 804 | 0,67 | 0,96 | −64,2 % | 7 de 9 |
+
+Por período (anualizado):
+
+| | 2018-2022 | 2023-2026 |
+|---|---|---|
+| Comprar y mantener | 4,3 % | 53,9 % |
+| DCA bot típico | 4,0 % | 54,9 % |
+| Grid típico | −28,0 % | 9,3 % |
+| **Filtro de tendencia** | **44,9 %** | **39,7 %** |
+
+- El filtro de tendencia es el único que rinde parecido en los dos períodos;
+  el resto depende de que el mercado suba.
+- El grid típico pasó 3.180 días por debajo de su máximo: nunca recuperó el
+  capital inicial.
+- El Sharpe del filtro acá (1,05) es menor que en la sección 3 (1,28) porque
+  allá el USDT rinde en Earn; acá no, para comparar en igualdad.
+
+Cada experimento tiene una **ficha estándar** en `resultados/fichas/`
+(hipótesis, reglas, datos con su huella SHA-256, costos, benchmark, métricas,
+validación, advertencias, etapa backtest/demo/real y el commit que la generó).
+
 ## Metodología (lo que la mayoría de los backtests no hace)
 
 - **Portafolio real:** un solo capital compartido, tamaño de posición y tope
@@ -228,6 +264,11 @@ python -m lab.grid_bot
 
 # DCA de ahorro y DCA bot (36 combinaciones, mismas velas de 5 minutos)
 python -m lab.dca
+
+# Comparador en las mismas condiciones y fichas estándar (después de grid y DCA)
+python -m lab.comparador
+python -m lab.fichas
+python -m pytest tests -q
 
 # Arbitraje de funding
 python -m lab.funding_carry

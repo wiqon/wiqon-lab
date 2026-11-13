@@ -1,0 +1,13 @@
+estrategia,nombre,periodo,desde,hasta,dias,retorno_total_pct,cagr_pct,volatilidad_pct,max_drawdown_pct,dias_en_dd_max,sharpe,sortino,calmar,mejor_anio_pct,peor_anio_pct,anios_positivos,anios_total,operaciones,exposicion_pct
+hold,Comprar y mantener BTC,completo,2018-01-01,2026-09-30,3194,524.99,23.3,64.24,-81.18,1045,0.65,0.94,0.29,301.98,-72.33,5,9,1.0,100.0
+hold,Comprar y mantener BTC,2018-2022,2018-01-01,2022-12-31,1825,23.64,4.33,74.87,-81.18,1045,0.44,0.62,0.05,301.98,-72.33,3,5,,100.0
+hold,Comprar y mantener BTC,2023-2026,2023-01-01,2026-09-30,1368,403.25,53.9,46.47,-52.97,359,1.16,1.81,1.02,154.46,-6.33,2,4,,100.0
+tendencia,Filtro de tendencia (media de 100 días),completo,2018-01-01,2026-09-30,3194,2142.16,42.68,42.04,-38.46,518,1.05,1.65,1.11,168.25,-27.7,7,9,111.0,51.52
+tendencia,Filtro de tendencia (media de 100 días),2018-2022,2018-01-01,2022-12-31,1825,539.69,44.94,46.39,-38.46,497,1.03,1.59,1.17,168.25,-27.7,3,5,,44.25
+tendencia,Filtro de tendencia (media de 100 días),2023-2026,2023-01-01,2026-09-30,1368,250.51,39.74,35.46,-36.13,413,1.12,1.82,1.1,82.65,4.82,4,4,,61.21
+grid,"Grid típico (±10 %, 20 niveles, reinicio mensual)",completo,2018-01-01,2026-09-30,3194,-72.85,-13.84,43.51,-84.95,3180,-0.11,-0.15,-0.16,36.04,-63.91,4,9,8832.0,
+grid,"Grid típico (±10 %, 20 niveles, reinicio mensual)",2018-2022,2018-01-01,2022-12-31,1825,-80.61,-27.97,52.47,-84.95,1811,-0.35,-0.45,-0.33,21.18,-63.91,1,5,,
+grid,"Grid típico (±10 %, 20 niveles, reinicio mensual)",2023-2026,2023-01-01,2026-09-30,1368,39.61,9.31,27.33,-37.24,359,0.46,0.66,0.25,36.04,-17.29,3,4,,
+dca_bot,"DCA bot típico (TP 2 %, 8 órdenes cada 2 %, escala 1,5)",completo,2018-01-01,2026-09-30,3194,528.81,23.38,50.29,-69.39,804,0.67,0.96,0.34,214.08,-64.21,7,9,987.0,
+dca_bot,"DCA bot típico (TP 2 %, 8 órdenes cada 2 %, escala 1,5)",2018-2022,2018-01-01,2022-12-31,1825,21.35,3.95,59.9,-69.39,474,0.37,0.52,0.06,214.08,-64.21,3,5,,
+dca_bot,"DCA bot típico (TP 2 %, 8 órdenes cada 2 %, escala 1,5)",2023-2026,2023-01-01,2026-09-30,1368,415.87,54.92,33.44,-30.79,249,1.48,2.41,1.78,154.46,2.24,4,4,,

@@ -1,0 +1,260 @@
+{
+ "id": "tendencia-btc",
+ "numero": 3,
+ "nombre": {
+  "es": "Filtro de tendencia en BTC",
+  "pt": "Filtro de tendência no BTC",
+  "en": "Trend filter on BTC"
+ },
+ "hipotesis": {
+  "es": "Estar en BTC solo cuando el cierre diario está sobre la media de 100 días reduce las caídas grandes sin perder la mayor parte de las subas.",
+  "pt": "Ficar em BTC só quando o fechamento diário está acima da média de 100 dias reduz as grandes quedas sem perder a maior parte das altas.",
+  "en": "Holding BTC only while the daily close is above the 100-day average cuts the big drawdowns without giving up most of the upside."
+ },
+ "reglas": {
+  "es": [
+   "Señal al cierre diario: ¿cierre > media simple de 100 días?",
+   "Sí: 100 % en BTC. No: 100 % en USDT.",
+   "La orden se ejecuta a la apertura del día siguiente."
+  ],
+  "pt": [
+   "Sinal no fechamento diário: fechamento > média simples de 100 dias?",
+   "Sim: 100 % em BTC. Não: 100 % em USDT.",
+   "A ordem é executada na abertura do dia seguinte."
+  ],
+  "en": [
+   "Signal at the daily close: close > 100-day simple average?",
+   "Yes: 100% BTC. No: 100% USDT.",
+   "The order executes at the next day's open."
+  ]
+ },
+ "temporalidad": "1D",
+ "validacion": [
+  {
+   "tipo": "sensibilidad",
+   "es": "18 combinaciones vecinas de parámetros (media 50/100/150, con y sin ajuste por volatilidad): todas entre 39 % y 57 % anual.",
+   "pt": "18 combinações vizinhas de parâmetros (média 50/100/150, com e sem ajuste por volatilidade): todas entre 39 % e 57 % ao ano.",
+   "en": "18 neighbouring parameter sets (50/100/150-day average, with and without volatility sizing): all between 39% and 57% a year.",
+   "archivo": "resultados/tendencia_multi.csv"
+  },
+  {
+   "tipo": "fuera_de_muestra",
+   "es": "Se mide por separado 2018-2022 (dos bajistas) y 2023-2026.",
+   "pt": "Mede-se separadamente 2018-2022 (dois mercados de baixa) e 2023-2026.",
+   "en": "Measured separately for 2018-2022 (two bear markets) and 2023-2026.",
+   "archivo": "resultados/comparador_metricas.csv"
+  },
+  {
+   "tipo": "otro_broker",
+   "es": "MetaTrader 5, CFD con swaps reales (Exness demo, 2022-2026): x2,02 contra x1,96 de mantener, caída de 39 % contra 67 %. Los swaps se llevan cerca de un tercio de la ventaja.",
+   "pt": "MetaTrader 5, CFD com swaps reais (Exness demo, 2022-2026): x2,02 contra x1,96 de manter, queda de 39 % contra 67 %. Os swaps levam cerca de um terço da vantagem.",
+   "en": "MetaTrader 5, CFD with real swaps (Exness demo, 2022-2026): x2.02 vs x1.96 for holding, 39% drawdown vs 67%. Swaps take about a third of the edge.",
+   "archivo": "resultados/mt5/"
+  }
+ ],
+ "advertencias": [
+  {
+   "es": "Rinde menos que mantener en los alcistas (2024-25: +55 % contra +93 %): su ventaja es proteger en los bajistas.",
+   "pt": "Rende menos que manter nas altas (2024-25: +55 % contra +93 %): a vantagem é proteger nas baixas.",
+   "en": "It lags holding in bull markets (2024-25: +55% vs +93%): its edge is protection in bear markets."
+  },
+  {
+   "es": "Pocas operaciones por año: las cifras tienen más incertidumbre de la que sugieren los decimales.",
+   "pt": "Poucas operações por ano: os números têm mais incerteza do que sugerem as casas decimais.",
+   "en": "Few trades a year: the figures carry more uncertainty than their decimals suggest."
+  },
+  {
+   "es": "Con el USDT en Earn el resultado es mayor (sección 3 del laboratorio); acá no se cuenta para comparar en igualdad.",
+   "pt": "Com o USDT em Earn o resultado é maior (seção 3 do laboratório); aqui não se conta para comparar em igualdade.",
+   "en": "With USDT in Earn the result is higher (lab section 3); it is left out here so all strategies compete on equal terms."
+  },
+  {
+   "es": "Un solo activo y una sola historia: el futuro no tiene por qué parecerse.",
+   "pt": "Um só ativo e uma só história: o futuro não precisa se parecer.",
+   "en": "One asset and one history: the future need not look alike."
+  }
+ ],
+ "clasificacion": {
+  "backtest": "hecho",
+  "demo": "hecho (MetaTrader 5, Exness)",
+  "real": "en curso (bot en la Raspberry; sin historial suficiente para publicar)"
+ },
+ "generado": "2026-11-12",
+ "version": {
+  "commit": "1b0794a",
+  "cambios_sin_commit": false,
+  "repositorio": "https://github.com/wiqon/wiqon-lab"
+ },
+ "datos": {
+  "fuente": "data.binance.vision — velas de 5 minutos BTCUSDT (spot), archivo público mensual",
+  "frecuencia_simulacion": "5 minutos (las métricas se miden sobre el cierre diario, UTC)",
+  "cobertura": "enero 2018 a septiembre 2026, sin huecos de meses",
+  "huella": {
+   "sha256": "2b35ec1d459ed86d01ee924f2bacbc9b02fe86bb576f7da6c5e8686892e0613f",
+   "archivos_mensuales": 105
+  }
+ },
+ "supuestos": {
+  "capital_inicial_usdt": 10000,
+  "comision_por_orden_pct": 0.1,
+  "spread_y_slippage": {
+   "es": "No se suma slippage aparte: el grid y el DCA bot usan órdenes límite; la regla de tendencia ejecuta a la apertura del día siguiente.",
+   "pt": "Não se soma slippage à parte: o grid e o robô DCA usam ordens limitadas; a regra de tendência executa na abertura do dia seguinte.",
+   "en": "No separate slippage is added: the grid and the DCA bot use limit orders; the trend rule executes at the next day's open."
+  },
+  "rendimiento_del_usdt": {
+   "es": "El USDT no rinde nada (sin Earn) en esta comparación.",
+   "pt": "O USDT não rende nada (sem Earn) nesta comparação.",
+   "en": "USDT earns nothing (no Earn) in this comparison."
+  },
+  "funding_y_swaps": {
+   "es": "No aplica: spot sin apalancamiento.",
+   "pt": "Não se aplica: spot sem alavancagem.",
+   "en": "Not applicable: unleveraged spot."
+  }
+ },
+ "benchmark": {
+  "id": "hold",
+  "es": "Comprar y mantener BTC, misma ventana y comisión",
+  "pt": "Comprar e manter BTC, mesma janela e comissão",
+  "en": "Buy and hold BTC, same window and fee"
+ },
+ "periodo": {
+  "desde": "2018-01-01",
+  "hasta": "2026-09-30",
+  "corte": "2023-01-01"
+ },
+ "metodologia_metricas": "lab/metricas.py",
+ "comparador": "lab/comparador.py",
+ "metricas": {
+  "completo": {
+   "desde": "2018-01-01",
+   "hasta": "2026-09-30",
+   "dias": 3194,
+   "retorno_total_pct": 2142.16,
+   "cagr_pct": 42.68,
+   "volatilidad_pct": 42.04,
+   "max_drawdown_pct": -38.46,
+   "dias_en_dd_max": 518,
+   "sharpe": 1.05,
+   "sortino": 1.65,
+   "calmar": 1.11,
+   "mejor_anio_pct": 168.25,
+   "peor_anio_pct": -27.7,
+   "anios_positivos": 7,
+   "anios_total": 9,
+   "operaciones": 111,
+   "exposicion_pct": 51.52
+  },
+  "2018-2022": {
+   "desde": "2018-01-01",
+   "hasta": "2022-12-31",
+   "dias": 1825,
+   "retorno_total_pct": 539.69,
+   "cagr_pct": 44.94,
+   "volatilidad_pct": 46.39,
+   "max_drawdown_pct": -38.46,
+   "dias_en_dd_max": 497,
+   "sharpe": 1.03,
+   "sortino": 1.59,
+   "calmar": 1.17,
+   "mejor_anio_pct": 168.25,
+   "peor_anio_pct": -27.7,
+   "anios_positivos": 3,
+   "anios_total": 5,
+   "operaciones": null,
+   "exposicion_pct": 44.25
+  },
+  "2023-2026": {
+   "desde": "2023-01-01",
+   "hasta": "2026-09-30",
+   "dias": 1368,
+   "retorno_total_pct": 250.51,
+   "cagr_pct": 39.74,
+   "volatilidad_pct": 35.46,
+   "max_drawdown_pct": -36.13,
+   "dias_en_dd_max": 413,
+   "sharpe": 1.12,
+   "sortino": 1.82,
+   "calmar": 1.1,
+   "mejor_anio_pct": 82.65,
+   "peor_anio_pct": 4.82,
+   "anios_positivos": 4,
+   "anios_total": 4,
+   "operaciones": null,
+   "exposicion_pct": 61.21
+  }
+ },
+ "anios": {
+  "2018": -27.7,
+  "2019": 134.0,
+  "2020": 168.2,
+  "2021": 77.9,
+  "2022": -20.8,
+  "2023": 82.7,
+  "2024": 65.0,
+  "2025": 4.8,
+  "2026": 11.0
+ },
+ "unidad_operaciones": "órdenes (entradas y salidas)",
+ "benchmark_metricas": {
+  "completo": {
+   "desde": "2018-01-01",
+   "hasta": "2026-09-30",
+   "dias": 3194,
+   "retorno_total_pct": 524.99,
+   "cagr_pct": 23.3,
+   "volatilidad_pct": 64.24,
+   "max_drawdown_pct": -81.18,
+   "dias_en_dd_max": 1045,
+   "sharpe": 0.65,
+   "sortino": 0.94,
+   "calmar": 0.29,
+   "mejor_anio_pct": 301.98,
+   "peor_anio_pct": -72.33,
+   "anios_positivos": 5,
+   "anios_total": 9,
+   "operaciones": 1,
+   "exposicion_pct": 100.0
+  },
+  "2018-2022": {
+   "desde": "2018-01-01",
+   "hasta": "2022-12-31",
+   "dias": 1825,
+   "retorno_total_pct": 23.64,
+   "cagr_pct": 4.33,
+   "volatilidad_pct": 74.87,
+   "max_drawdown_pct": -81.18,
+   "dias_en_dd_max": 1045,
+   "sharpe": 0.44,
+   "sortino": 0.62,
+   "calmar": 0.05,
+   "mejor_anio_pct": 301.98,
+   "peor_anio_pct": -72.33,
+   "anios_positivos": 3,
+   "anios_total": 5,
+   "operaciones": null,
+   "exposicion_pct": 100.0
+  },
+  "2023-2026": {
+   "desde": "2023-01-01",
+   "hasta": "2026-09-30",
+   "dias": 1368,
+   "retorno_total_pct": 403.25,
+   "cagr_pct": 53.9,
+   "volatilidad_pct": 46.47,
+   "max_drawdown_pct": -52.97,
+   "dias_en_dd_max": 359,
+   "sharpe": 1.16,
+   "sortino": 1.81,
+   "calmar": 1.02,
+   "mejor_anio_pct": 154.46,
+   "peor_anio_pct": -6.33,
+   "anios_positivos": 2,
+   "anios_total": 4,
+   "operaciones": null,
+   "exposicion_pct": 100.0
+  }
+ },
+ "extra": {}
+}
